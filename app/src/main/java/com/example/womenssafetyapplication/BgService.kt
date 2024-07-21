@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Service
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Handler
 import android.os.HandlerThread
@@ -19,6 +20,7 @@ import androidx.core.content.ContextCompat
 class BgService : Service(), AccelerometerListener {
     private var mServiceLooper: Looper? = null
     private var mServiceHandler: ServiceHandler? = null
+    private lateinit var sharedPreferences: SharedPreferences
 
     // Handler that receives messages from the thread.
     private inner class ServiceHandler(looper: Looper) : Handler(looper) {
@@ -33,6 +35,7 @@ class BgService : Service(), AccelerometerListener {
 
     override fun onCreate() {
         super.onCreate()
+        sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
         if (AccelerometerManager.isSupported(this)) {
             AccelerometerManager.startListening(this)
         }
@@ -96,8 +99,9 @@ class BgService : Service(), AccelerometerListener {
     }
 
     private fun sendEmergencyMessage(latitude: Double, longitude: Double) {
-        val emergencyNumber = "+254728442111" // Replace with your registered emergency contact number
-        val message = "Your Kin at Latitude: $latitude, Longitude: $longitude is in danger."
+        val userName = sharedPreferences.getString("UserName", "Your Kin")
+        val emergencyNumber = sharedPreferences.getString("UserNumber", "+254742254329") // Default number if not set
+        val message = "$userName at Latitude: $latitude, Longitude: $longitude is in danger."
 
         try {
             val smsManager = SmsManager.getDefault()

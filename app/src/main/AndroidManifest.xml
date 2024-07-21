@@ -50,6 +50,7 @@
         <activity android:name=".Display" />
         <activity android:name=".Instructions" />
         <activity android:name=".Verify" />
+        <activity android:name=".LoginActivity" />
 
         <!-- Background service -->
         <service android:name=".BgService" />

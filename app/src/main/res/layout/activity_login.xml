@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/front"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="@string/be_safe"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:textSize="50sp"
+        android:textStyle="italic"/>
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="200dp"
+        android:hint="@string/enter_name"
+        style="@style/EditTextStyle"
+        android:textColorHint="@color/white"/>
+
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:hint="@string/enter_emergency_number"
+        android:inputType="phone"
+        style="@style/EditTextStyle"
+        android:textColorHint="@color/white"/>
+
+    <Button
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:onClick="saveUserDetails"
+        android:text="@string/login"
+        android:background="@drawable/button_background_pink"
+        android:textColor="@color/white"/>
+</LinearLayout>
